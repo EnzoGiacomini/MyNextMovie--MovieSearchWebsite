@@ -1,0 +1,249 @@
+/* --- Reset e Variáveis --- */
+:root {
+    --bg-color: #EFECE3;
+    --primary-dark: #313647;
+    --accent-blue: #4A70A9;
+    --light-blue: #8FABD4;
+    --card-bg: #fff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--primary-dark);
+    color: var(--bg-color);
+    padding: 20px;
+    border-radius: 0 0 50px 50px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-family: "Cabin Sketch", cursive;
+    font-size: 3rem;
+}
+
+/* --- Títulos e Inputs --- */
+h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin: 30px 0 15px;
+}
+
+/* Estilizando Input e Botão juntos */
+#t-Input {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-dark);
+    border-radius: 30px 0 0 30px;
+    width: 250px;
+    outline: none;
+}
+
+#searchButton {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background-color: var(--accent-blue);
+    color: white;
+    border: 2px solid var(--primary-dark);
+    border-left: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#searchButton:hover {
+    background-color: var(--primary-dark);
+}
+
+#randomButton {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background-color: var(--light-blue);
+    color: var(--primary-dark);
+    border: 2px solid var(--primary-dark);
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 30px;
+    box-shadow: 4px 4px 0 var(--primary-dark);
+    transition: transform 0.1s;
+}
+
+#randomButton:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--primary-dark);
+}
+
+/* --- Áreas de Resultado --- */
+#result-div, #Rresult-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- O CARD DO FILME (Mágica do Grid Areas) --- */
+.movie-div {
+    background-color: var(--card-bg);
+    border: 2px solid var(--primary-dark);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 600px;
+    display: grid;
+    gap: 10px;
+    text-align: left;
+    
+    /* Define onde cada elemento vai ficar */
+    grid-template-columns: 150px 1fr; 
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas: 
+        "poster title"
+        "poster stars"
+        "poster date"
+        "poster button";
+}
+
+/* Mapeando as classes do seu JS para as áreas do Grid */
+.movieIMG {
+    grid-area: poster;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #333;
+    object-fit: cover;
+}
+
+.movieH3 {
+    grid-area: title;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin: 0;
+    align-self: end; /* Alinha texto embaixo na celula */
+}
+
+.movieStars {
+    grid-area: stars;
+    color: #555;
+    font-size: 1rem;
+}
+
+.movieDate {
+    grid-area: date;
+    color: #555;
+    font-size: 1rem;
+}
+
+.movieButton {
+    grid-area: button;
+    align-self: start;
+    justify-self: start;
+    background-color: var(--primary-dark);
+    color: #EFECE3;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.movieButton:hover {
+    background-color: var(--accent-blue);
+}
+
+/* --- Modal / Resume --- */
+/* Classe utilitária para esconder elementos (usada no seu JS) */
+.d {
+    display: none !important;
+}
+
+/* Bloqueia scroll */
+.no-scroll {
+    overflow: hidden;
+}
+
+.overview-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: #EFECE3;
+    border: 4px solid var(--primary-dark);
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 15px;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6); /* Escurece o fundo */
+    text-align: center;
+}
+
+.overview-div h5 {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--accent-blue);
+}
+
+.overview-text {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Botão de fechar */
+.exit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- Responsividade para celular --- */
+@media (max-width: 500px) {
+    .movie-div {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "poster"
+            "title"
+            "stars"
+            "date"
+            "button";
+        text-align: center;
+    }
+    
+    .movieIMG {
+        width: 150px; /* Tamanho fixo no mobile para não ficar gigante */
+        margin: 0 auto;
+    }
+
+    .movieButton {
+        justify-self: center;
+    }
+    
+    .movieH3 {
+        align-self: center;
+    }
+}
